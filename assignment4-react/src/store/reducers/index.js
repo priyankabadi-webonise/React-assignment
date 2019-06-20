@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { todoReducer } from "./todoReducer";
+import { shopReducer } from "./todoReducer";
 
 export default combineReducers({
-  ArrayToDo: todoReducer
+  cartList: shopReducer
 });

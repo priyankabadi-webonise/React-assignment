@@ -1,0 +1,20 @@
+[
+  {
+    "item" : "gray tabby",
+    "discription" :"The name gray tabby describes not a breed but a coat color and pattern. The sporty looks of the gray tabby are peerless. ",
+    "price" : 2000,
+    "img" : "item1"
+  },
+  {
+    "item" : "Persian",
+    "discription" :"known for the pushed-in Pekingese nose that many are bred for, arguably the best part of these cats is their pettability. All that fur needs a lot of daily grooming, ",
+    "price" : 5000,
+    "img"  : "item2"
+  },
+  {
+    "item" : "Norwegian Forest Cat",
+    "discription" :"A big cat with big paws and lots of fur, the Norwegian is like a Maine Coon cat’s Viking cousin.",
+    "price" : 3000,
+    "img"  : "item3"
+  }
+]
