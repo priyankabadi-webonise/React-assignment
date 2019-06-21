@@ -31,17 +31,20 @@ class ShowCart extends React.Component{
     this.setState({total: 0});
   }
   cartDisplay = () => {
-    return this.props.cartList.map((prod,index) => {
-      const { item, discription, price, img, quantity, Total } = prod //destructuring
-      return (
-        <div>
-       <span>item : {item}</span>
-       <span>    quantity : {quantity}</span>
-       <span>    price : {quantity} X {price}</span>
-       <span>    total : {Total}</span>
-        </div>
-      )
-   })
+    if(this.props.cartList !== null){
+      return this.props.cartList.map((prod,index) => {
+        
+       const { item, discription, price, img, quantity, Total } = prod //destructuring
+        return (
+          <div>
+            <span>item : {item}</span>
+            <span>    quantity : {quantity}</span>
+            <span>    price : {quantity} X {price}</span>
+            <span>    total : {Total}</span>
+          </div>
+        )
+      })
+    }
   }
 
 }

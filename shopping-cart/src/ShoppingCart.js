@@ -53,11 +53,13 @@ class ShoppingCart extends React.Component {
     this.calculateQuantity();
   }
   calculateQuantity=()=>{
-    var total=0;
-    this.props.cartList.map((prod)=>{
-      total +=prod.quantity;
-    })
-     this.setState({items:total});
+    if(this.props.cartList !== null){
+      var total=0;
+      this.props.cartList.map((prod)=>{
+        total +=prod.quantity;
+      })
+      this.setState({items:total});
+    }
   }
   render(){
    /* var classDis = this.state.flag ? <ShowProduct products={this.state.product}
@@ -103,4 +105,4 @@ removeProduct : (name) => dispatch(deleteProd(name))
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ShoppingCart);;
+)(ShoppingCart);

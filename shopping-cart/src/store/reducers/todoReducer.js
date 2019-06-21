@@ -3,7 +3,9 @@ import { Z_FILTERED } from 'zlib';
 export const shopReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_TO_CART":
-      
+      if(state == null){
+        state=[];
+      }
       var getItemToAdd = product.find((prod)=> prod.item == action.payload);
       var checkItemExists = state.find((prod)=> prod.item==getItemToAdd.item);
       if(checkItemExists){
@@ -41,7 +43,7 @@ export const shopReducer = (state = [], action) => {
       }
       return state;
     case "EMPTY_CART":
-      return[action.payload];
+      return action.payload;
     default:
       return state;
   }

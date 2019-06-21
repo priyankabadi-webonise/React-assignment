@@ -11,7 +11,7 @@ export const deleteProd = name => ({
 });
 export const emptyCart = () =>({
   type: "EMPTY_CART",
-  payload:[]
+  payload: null
 })
 
 
