@@ -64,7 +64,7 @@ class App extends React.Component {
     debugger;
     switch(operator){
       case '+': return parseFloat(op1, 10)+parseFloat(op2,10);
-      case '-': return op1-op2;
+      case '-': return op2-op1;
       case 'x': return op1*op2;
       case '÷': return op2/op1;
     }
