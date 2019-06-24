@@ -37,6 +37,16 @@ app.get("/products", function(req, res) {
   res.json(products);
 });
 
+app.get("/getcartlist", function(req, res) {
+  res.json(cartList);
+});
+
+app.post("/emptycartlist", function(req, res) {
+  cartList=null;
+  res.json(cartList);
+});
+
+
 app.post("/cartList", function(req, res) {
   let data={item: req.body.item};
   if(cartList == null){
@@ -54,6 +64,7 @@ app.post("/cartList", function(req, res) {
   }else{
      getItemToAdd.quantity = 1;
      getItemToAdd.Total = getItemToAdd.price;
+     cartList.push(getItemToAdd);
   }
   res.json(data);
 });
@@ -65,7 +76,7 @@ app.post("/cartListDelete", function(req, res) {
   var checkItemExistss = cartList.find((prod)=> prod.item==getItemTodel.item);
       if(checkItemExistss){
         if(checkItemExistss.quantity === 1){
-          cartList.filter((prod) => prod.item != getItemTodel.item);
+          cartList = cartList.filter((prod) => prod.item != getItemTodel.item);
         }else{
           cartList.map((prod)=>{
             if(prod.item === getItemTodel.item){

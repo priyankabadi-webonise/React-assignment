@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const addProd = name => ({
+export const addProd = prod => ({
   type: "ADD_TO_CART",
-  payload: name
+  payload: prod
 });
 
-export const deleteProd = name => ({
+export const deleteProd = item => ({
   type: "DELETE_FROM_CART",
-  payload: name
+  payload: item
 });
 export const emptyCart = () =>({
   type: "EMPTY_CART",
@@ -39,11 +39,11 @@ export const addProductToCartOnServer = (item) => {
     return axios({
       method: "post",
       url: "http://localhost:5000/cartList",
-      data:{item:item}
+      data:item
     })
       .then(response => {
         let item = response.data;
-        dispatch(addProd(item.item));
+        dispatch(addProd(item));
       })
       .catch(e => console.log("error", e));
   };
@@ -55,17 +55,49 @@ export const deleteProductFromCartOnServer = (item) => {
     return axios({
       method: "post",
       url: "http://localhost:5000/cartListDelete",
-      data:{item:item}
+      data:item
     })
       .then(response => {
         let item = response.data;
-        dispatch(deleteProd(item.item));
+        dispatch(deleteProd(item));
       })
       .catch(e => console.log("error", e));
   };
 };
-
-
+export const getCartList = cartList=>({
+  type : "GET_CARTLIST",
+  payload : cartList
+})
+export const loadCartListFromServer = () => {
+  debugger;
+  return dispatch => {
+    return axios({
+      method: "get",
+      url: "http://localhost:5000/getcartlist"
+    })
+      .then(response => {
+        debugger;
+        let cartlist = response.data;
+        dispatch(getCartList(cartlist));
+      })
+      .catch(e => console.log("error", e));
+  };
+};
+export const emptyCartFromServer = () => {
+  debugger;
+  return dispatch => {
+    return axios({
+      method: "post",
+      url: "http://localhost:5000/emptycartlist"
+    })
+      .then(response => {
+        debugger;
+        let cartlist = response.data;
+        dispatch(emptyCart(cartlist));
+      })
+      .catch(e => console.log("error", e));
+  };
+};
 
 
 

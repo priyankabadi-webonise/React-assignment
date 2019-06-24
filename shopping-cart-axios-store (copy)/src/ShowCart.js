@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { emptyCart } from "./store/actions/todoAction";
+import { emptyCartFromServer, loadCartListFromServer } from "./store/actions/todoAction";
 
 class ShowCart extends React.Component{
   constructor(props){
@@ -10,6 +10,7 @@ class ShowCart extends React.Component{
     }
   }
   componentDidMount(){
+    this.props.getcartList();
     if(this.props.cartList !=null){
       var tot=0;
       this.props.cartList.map(total=>{
@@ -57,6 +58,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  billpay: () => dispatch(emptyCart())
+  billpay: () => dispatch(emptyCartFromServer()),
+  getcartList : ()=>dispatch(loadCartListFromServer())
   });
 export default connect(mapStateToProps, mapDispatchToProps)(ShowCart);

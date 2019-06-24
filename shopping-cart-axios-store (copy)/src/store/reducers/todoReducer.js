@@ -6,7 +6,7 @@ export const shopReducer = (state = [], action) => {
       if(state == null){
         state=[];
       }
-      var getItemToAdd = product.find((prod)=> prod.item == action.payload);
+      var getItemToAdd = action.payload;
       var checkItemExists = state.find((prod)=> prod.item==getItemToAdd.item);
       if(checkItemExists){
         return state.map((prod)=>{
@@ -24,7 +24,7 @@ export const shopReducer = (state = [], action) => {
       return [...state,getItemToAdd];
       }
     case "DELETE_FROM_CART":
-      var getItemTodel = product.find((prod)=> prod.item == action.payload);
+      var getItemTodel = action.payload;
       checkItemExists = state.find((prod)=> prod.item==getItemTodel.item);
       if(checkItemExists){
         if(checkItemExists.quantity === 1){
@@ -43,6 +43,10 @@ export const shopReducer = (state = [], action) => {
       }
       return state;
     case "EMPTY_CART":
+      return action.payload;
+
+    case "GET_CARTLIST":
+      debugger;
       return action.payload;
 
     default:

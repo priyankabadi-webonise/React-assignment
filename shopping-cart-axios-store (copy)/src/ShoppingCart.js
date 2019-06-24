@@ -1,17 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { CartSave } from './CartSave.js'
 import { ShowProduct } from './ShowProduct.js'
-import item1 from './images/item1.jpg'
-import item2 from './images/item2.jpg'
-import item3 from './images/item3.jpg'
-import product from './product.json';
 import { connect } from "react-redux";
 import {
   deleteProductFromCartOnServer,
   LoadProductFromServer,
-  addProductToCartOnServer
+  addProductToCartOnServer,
+  loadCartListFromServer
 } from "./store/actions/todoAction";
 
 
@@ -28,16 +23,20 @@ class ShoppingCart extends React.Component {
   }
   componentDidMount(){
     this.props.getProducts();
+    this.props.getcartList();
     this.calculateQuantity();
     debugger;
   }
   calculateQuantity=()=>{
+    debugger;
     if(this.props.cartList !== null){
       var total=0;
       this.props.cartList.map((prod)=>{
-        total +=prod.quantity;
+        total += prod.quantity;
+        debugger;
       })
       this.setState({items:total});
+      debugger;
     }
   }
   render(){
@@ -51,14 +50,16 @@ class ShoppingCart extends React.Component {
     </div>
   );
   }
-
+  
   addItem = (item) => {
-    this.props.addProduct(item);
+    var objectToAdd = this.props.product.find((prod)=> prod.item == item);
+    this.props.addProduct(objectToAdd);
     this.calculateQuantity();
     
   }
   deleteItem = (item) => {
-    this.props.removeProduct(item);
+    var objectTodelete = this.props.product.find((prod)=> prod.item == item);
+    this.props.removeProduct(objectTodelete);
     this.calculateQuantity();
    
   }
@@ -77,7 +78,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 addProduct : (name) => dispatch(addProductToCartOnServer(name)),
 removeProduct : (name) => dispatch(deleteProductFromCartOnServer(name)),
-getProducts : ()=>dispatch(LoadProductFromServer())
+getProducts : ()=>dispatch(LoadProductFromServer()),
+getcartList : ()=>dispatch(loadCartListFromServer())
 });
 
 export default connect(
