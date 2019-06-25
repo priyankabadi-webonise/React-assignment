@@ -1,3 +1,2 @@
 # React-assignment
-assignments
-simple assignents using reactjs
+simple assignments using reactjs
